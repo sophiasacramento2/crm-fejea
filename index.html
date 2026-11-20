@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRM FEJEA Captação</title>
+<style>
+:root{--az:#191f39;--vm:#9e1a20;--bg:#f4f5f8;--card:#fff;--tx:#1d2233;--mu:#6b7186;--ln:#e2e4ea;--ok:#2e7d4f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10131f;--card:#1b2033;--tx:#e8e9ef;--mu:#9aa0b4;--ln:#2c3247}}
+:root[data-theme="dark"]{--bg:#10131f;--card:#1b2033;--tx:#e8e9ef;--mu:#9aa0b4;--ln:#2c3247}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);font-size:14px}
+.app{display:flex;min-height:100vh}nav{width:210px;background:var(--az);color:#fff;padding:18px 12px;flex-shrink:0}
+nav h1{margin:0 0 4px;font-size:22px;letter-spacing:2px}nav small{opacity:.6;display:block;margin-bottom:20px}
+nav button{display:block;width:100%;text-align:left;background:none;border:0;color:#cfd3e3;padding:10px 12px;border-radius:6px;cursor:pointer;font-size:14px}
+nav button.on,nav button:hover{background:rgba(255,255,255,.1);color:#fff}nav button.on{border-left:3px solid var(--vm)}
+main{flex:1;padding:22px;min-width:0}header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+header h2{margin:0;color:var(--tx)}.flt{display:flex;gap:8px;flex-wrap:wrap}select,input,textarea{padding:7px 9px;border:1px solid var(--ln);border-radius:6px;background:var(--card);color:var(--tx);font:inherit}
+.btn{background:var(--vm);color:#fff;border:0;padding:8px 14px;border-radius:6px;cursor:pointer;font-weight:600}.btn.sec{background:var(--az)}
+.kan{display:grid;grid-template-columns:repeat(6,minmax(170px,1fr));gap:10px;overflow-x:auto;padding-bottom:8px}
+.col{background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:8px;min-height:300px}.col h3{font-size:12px;text-transform:uppercase;color:var(--az);margin:4px 4px 10px;display:flex;justify-content:space-between}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .col h3{color:#aab3e0}}
+.col.ov{outline:2px dashed var(--vm)}.cd{background:var(--bg);border-left:3px solid var(--az);border-radius:6px;padding:9px;margin-bottom:8px;cursor:grab}
+.cd b{display:block}.cd span{font-size:12px;color:var(--mu);display:block;margin-top:2px}.cd .na{color:var(--vm);font-weight:600}
+.box{background:var(--card);border:1px solid var(--ln);border-radius:8px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.bar{height:10px;background:var(--ln);border-radius:5px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--vm)}
+.big{font-size:26px;font-weight:700}.mu{color:var(--mu);font-size:12px}table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid var(--ln);text-align:left}
+th{font-size:12px;color:var(--mu);text-transform:uppercase}.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;background:var(--ln)}
+.tag.ok{background:#d9f0e2;color:var(--ok)}.tag.pe{background:#f7dedf;color:var(--vm)}
+.md{position:fixed;inset:0;background:rgba(10,12,25,.55);display:flex;align-items:flex-start;justify-content:center;padding:30px 12px;overflow:auto;z-index:9}
+.mc{background:var(--card);border-radius:10px;max-width:720px;width:100%;padding:22px}.mc h2{margin-top:0;color:var(--tx)}
+.tl{border-left:2px solid var(--ln);margin-left:6px;padding-left:14px}.tl div{position:relative;margin-bottom:10px}.tl div:before{content:"";position:absolute;left:-20px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--vm)}
+form.f{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}.x{float:right;background:none;border:0;font-size:20px;cursor:pointer;color:var(--mu)}
+.rep{border-top:6px solid var(--vm)}.rep h1{color:var(--az);margin:0}
+@media (max-width:760px){.app{flex-direction:column}nav{width:100%;display:flex;flex-wrap:wrap;gap:4px;padding:10px 16px}nav h1,nav small{width:100%}nav small{margin-bottom:6px}nav button{width:auto;padding:7px 10px}main{padding:16px}}
+@media print{nav,.noprint{display:none}}
+</style></head><body><div class="app"><nav id="nav"><h1>FEJEA</h1><small>CRM de Captação · protótipo</small></nav><main id="m"></main></div><div id="mod"></div>
+<script>
+const ET=["Conhecer a FEJEA","Relacionamento","Interesse","Consideração","Ações efetivas","Prova de valor"];
+const RESP=["Ana Lima","Bruno Rocha","Carla Melo"],EVT=["ALMEJ","ENEJ","Regional Sertão","Captação anual"];
+let S={view:"funil",f:{e:"",r:"",v:""},emp:[
+{id:1,n:"Maré Alta Turismo",s:"Turismo",r:0,e:0,c:"contato@marealta.fict",t:"Dinheiro",v:0,ev:"ALMEJ",na:"Apresentar portfólio",d:"2026-11-25",h:{},ab:[["2026-11-10","E-mail","Primeiro contato enviado"]],ct:[]},
+{id:2,n:"Coqueiral Alimentos",s:"Alimentos",r:1,e:1,c:"mkt@coqueiral.fict",t:"Produto",v:1200,ev:"ALMEJ",na:"Café com gerente",d:"2026-11-22",h:{2025:"Coffee break regional"},ab:[["2026-10-30","Evento","Conheceu no regional"],["2026-11-12","WhatsApp","Topou conversar"]],ct:[]},
+{id:3,n:"Sururu Tech",s:"Tecnologia",r:2,e:2,c:"parcerias@sururu.fict",t:"Dinheiro",v:2500,ev:"Captação anual",na:"Enviar proposta",d:"2026-11-21",h:{},ab:[["2026-11-05","Reunião","Pediu proposta anual"]],ct:[]},
+{id:4,n:"Agreste Contábil",s:"Serviços",r:0,e:3,c:"diretoria@agreste.fict",t:"Abatimento",v:3000,ev:"ENEJ",na:"Retorno da proposta",d:"2026-11-28",h:{2024:"Apoio pontual"},ab:[["2026-11-01","Reunião","Proposta apresentada"],["2026-11-14","E-mail","Em análise jurídica"]],ct:[]},
+{id:5,n:"Lagoa Azul Saúde",s:"Saúde",r:1,e:4,c:"rh@lagoaazul.fict",t:"Dinheiro",v:1500,ev:"Regional Sertão",na:"Assinar contrato",d:"2026-11-20",h:{},ab:[["2026-11-08","Reunião","Aceitou cota prata"]],ct:[["Logo no telão",0],["Stand no evento",0],["Post no Instagram",0]]},
+{id:6,n:"Rendeira Moda",s:"Varejo",r:2,e:5,c:"marca@rendeira.fict",t:"Produto",v:2000,ev:"ALMEJ",na:"Reunião de renovação",d:"2027-01-15",h:{2025:"Kits do ALMEJ",2026:"Cota bronze ALMEJ"},ab:[["2026-06-02","Reunião","Fechou cota"],["2026-09-20","E-mail","Relatório enviado"]],ct:[["Logo nos kits",1],["Menção na abertura",1],["2 posts no Instagram",1],["Relatório de alcance",0]],al:"166 empresários juniores no ALMEJ · 4.200 contas alcançadas"},
+{id:7,n:"Caatinga Energia Solar",s:"Energia",r:0,e:5,c:"social@caatinga.fict",t:"Dinheiro",v:2500,ev:"Captação anual",na:"Proposta 2027",d:"2026-12-10",h:{2026:"Parceiro anual"},ab:[["2026-02-15","Reunião","Fechou parceria anual"],["2026-08-10","Evento","Palestra no ENEJ"]],ct:[["Logo no site",1],["Palestra em evento",1],["Relatório semestral",1]],al:"34 EJs da rede · 3 eventos com marca exposta"}],
+abs:[["2026-11-17","E-mail",3],["2026-11-18","WhatsApp",2]]};
+const $=s=>document.querySelector(s),R=n=>"R$ "+n.toLocaleString("pt-BR"),fd=d=>d.split("-").reverse().join("/");
+const VIEWS={funil:"Funil",lista:"Lista de parceiros",abord:"Registro de abordagens",painel:"Painel de indicadores",contra:"Contrapartidas",cal:"Calendário"};
+$("#nav").innerHTML+=Object.entries(VIEWS).map(([k,v])=>`<button data-v="${k}">${v}</button>`).join("");
+$("#nav").onclick=e=>{if(e.target.dataset.v){S.view=e.target.dataset.v;draw()}};
+function filt(){return S.emp.filter(x=>(S.f.e===""||x.e==S.f.e)&&(S.f.r===""||x.r==S.f.r)&&(S.f.v===""||x.ev==S.f.v))}
+function filtros(){const o=(a,k,l)=>`<select onchange="S.f.${k}=this.value;draw()"><option value="">${l}</option>${a.map((x,i)=>`<option value="${k=="v"?x:i}" ${S.f[k]==(k=="v"?x:i)&&S.f[k]!==""?"selected":""}>${x}</option>`).join("")}</select>`;
+return `<div class="flt">${o(ET,"e","Todas as etapas")}${o(RESP,"r","Todos os responsáveis")}${o(EVT,"v","Todos os eventos")}</div>`}
+function draw(){document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.v==S.view));
+const h=(t,x="")=>`<header><h2>${t}</h2>${x}</header>`;let m="";const L=filt();
+if(S.view=="funil")m=h("Funil de captação",filtros())+`<div class="kan">${ET.map((et,i)=>{const c=L.filter(x=>x.e==i);return `<div class="col" data-e="${i}"><h3>${et}<span>${c.length}</span></h3>${c.map(card).join("")}</div>`}).join("")}</div><p class="mu">Arraste os cards entre as colunas para atualizar a etapa. Clique para abrir a ficha.</p>`;
+if(S.view=="lista")m=h("Lista de parceiros",filtros())+`<div class="box" style="overflow-x:auto"><table><tr><th>Empresa</th><th>Segmento</th><th>Etapa</th><th>Responsável</th><th>Tipo</th><th>Valor</th><th>Próxima ação</th></tr>${L.map(x=>`<tr style="cursor:pointer" onclick="ficha(${x.id})"><td><b>${x.n}</b></td><td>${x.s}</td><td>${ET[x.e]}</td><td>${RESP[x.r]}</td><td>${x.t}</td><td>${R(x.v)}</td><td>${x.na} · ${fd(x.d)}</td></tr>`).join("")}</table></div>`;
+if(S.view=="abord"){const n=S.abs.reduce((a,b)=>a+b[2],0);m=h("Registro de abordagens")+`<div class="box"><b>Meta semanal: 5 abordagens</b><div class="bar"><i style="width:${Math.min(100,n/5*100)}%"></i></div><span class="mu">${n} de 5 nesta semana ${n>=5?"· meta batida ✓":""}</span></div>
+<div class="box"><form class="f" onsubmit="addAb(event)"><select name="emp">${S.emp.map(x=>`<option value="${x.id}">${x.n}</option>`).join("")}</select><input type="date" name="d" value="2026-11-19" required><select name="c"><option>E-mail</option><option>WhatsApp</option><option>Reunião</option><option>Evento</option></select><input name="r" placeholder="Resultado da abordagem" required><button class="btn">Registrar</button></form></div>
+<div class="box"><b>Últimas abordagens</b><table>${S.emp.flatMap(x=>x.ab.map(a=>[...a,x.n])).sort((a,b)=>b[0]>a[0]?1:-1).slice(0,8).map(a=>`<tr><td>${fd(a[0])}</td><td>${a[3]}</td><td>${a[1]}</td><td>${a[2]}</td></tr>`).join("")}</table></div>`}
+if(S.view=="painel"){const an=S.emp.filter(x=>x.ev=="Captação anual"&&x.e>=4&&x.t=="Dinheiro").reduce((a,x)=>a+x.v,0),ct=S.emp.filter(x=>x.ev!="Captação anual"&&x.e>=4).reduce((a,x)=>a+x.v,0);
+const conv=Math.round(S.emp.filter(x=>x.e>=4).length/S.emp.length*100),at=Math.round(S.emp.filter(x=>x.ab.some(a=>a[0]>="2026-09-01")).length/S.emp.length*100);
+const blk=(t,v,mt)=>`<div class="box"><span class="mu">${t}</span><div class="big">${R(v)}</div><div class="bar"><i style="width:${Math.min(100,v/mt*100)}%"></i></div><span class="mu">Meta ${R(mt)} · ${Math.round(v/mt*100)}%</span></div>`;
+m=h("Painel de indicadores")+`<div class="grid">${blk("Captação anual em dinheiro",an,2500)}${blk("Cotas de evento",ct,5000)}<div class="box"><span class="mu">Taxa de conversão (Ações efetivas + Prova de valor)</span><div class="big">${conv}%</div></div><div class="box"><span class="mu">Parceiros com etapa atualizada no ciclo</span><div class="big">${at}%</div></div></div><p class="mu">Os dois blocos de valor são metas separadas e não se somam.</p>
+<div class="box"><b>Empresas por etapa</b>${ET.map((e,i)=>{const c=S.emp.filter(x=>x.e==i).length;return `<div style="display:flex;align-items:center;gap:10px;margin-top:8px"><span style="width:150px" class="mu">${e}</span><div class="bar" style="flex:1"><i style="width:${c/S.emp.length*100}%;background:var(--az)"></i></div><b>${c}</b></div>`}).join("")}</div>`}
+if(S.view=="contra")m=h("Contrapartidas")+S.emp.filter(x=>x.ct.length).map(x=>{const d=x.ct.filter(c=>c[1]).length;return `<div class="box"><b>${x.n}</b> <span class="tag ${d==x.ct.length?"ok":"pe"}">${d==x.ct.length?"Concluído":d+" de "+x.ct.length+" entregues"}</span>${x.ct.map((c,i)=>`<div style="margin-top:8px"><label><input type="checkbox" ${c[1]?"checked":""} onchange="S.emp.find(y=>y.id==${x.id}).ct[${i}][1]=this.checked?1:0;draw()"> ${c[0]}</label> <span class="tag ${c[1]?"ok":"pe"}">${c[1]?"Entregue":"Prometido"}</span></div>`).join("")}</div>`}).join("");
+if(S.view=="cal"){const ev=[["2026-12-10","Prazo de renovação","Caatinga Energia Solar"],["2027-01-15","Prazo de renovação","Rendeira Moda"],["2027-03-20","Regional Sertão","Cotas: Bronze R$500 · Prata R$1.500"],["2027-06-12","ALMEJ","Cotas: Bronze R$1.000 · Prata R$2.000 · Ouro R$3.500"],["2027-09-05","Regional Litoral","Cotas: Bronze R$500 · Prata R$1.500"],["2027-11-08","ENEJ","Apoio para a delegação: cotas de R$1.000"]];
+m=h("Calendário 2026–2027")+`<div class="box"><table>${ev.map(e=>`<tr><td><b>${fd(e[0])}</b></td><td><span class="tag ${e[1].startsWith("Prazo")?"pe":""}">${e[1]}</span></td><td>${e[2]}</td></tr>`).join("")}</table></div>`}
+$("#m").innerHTML=m;dnd()}
+function card(x){return `<div class="cd" draggable="true" data-id="${x.id}" onclick="ficha(${x.id})"><b>${x.n}</b><span>${x.s} · ${RESP[x.r]}</span><span class="na">${x.na} · ${fd(x.d)}</span></div>`}
+function dnd(){document.querySelectorAll(".cd").forEach(c=>c.ondragstart=e=>e.dataTransfer.setData("id",c.dataset.id));
+document.querySelectorAll(".col").forEach(c=>{c.ondragover=e=>{e.preventDefault();c.classList.add("ov")};c.ondragleave=()=>c.classList.remove("ov");
+c.ondrop=e=>{e.preventDefault();const x=S.emp.find(y=>y.id==e.dataTransfer.getData("id"));x.e=+c.dataset.e;x.ab.push(["2026-11-19","Sistema","Etapa atualizada para "+ET[x.e]]);draw()}})}
+function close_(){$("#mod").innerHTML=""}
+function ficha(id){const x=S.emp.find(y=>y.id==id);$("#mod").innerHTML=`<div class="md" onclick="if(event.target==this)close_()"><div class="mc"><button class="x" onclick="close_()">×</button><h2>${x.n}</h2>
+<div class="grid"><div><span class="mu">Contato</span><br>${x.c}</div><div><span class="mu">Segmento</span><br>${x.s}</div><div><span class="mu">Etapa</span><br>${ET[x.e]}</div><div><span class="mu">Responsável</span><br>${RESP[x.r]}</div><div><span class="mu">Tipo de parceria</span><br>${x.t}</div><div><span class="mu">Valor</span><br>${R(x.v)} · ${x.ev}</div></div>
+<p><span class="mu">Próxima ação</span><br><b style="color:var(--vm)">${x.na} · ${fd(x.d)}</b></p><p><span class="mu">Histórico por ano</span><br>${Object.entries(x.h).map(([a,t])=>`<b>${a}</b>: ${t}`).join("<br>")||"Primeiro ano de relacionamento"}</p>
+<p class="mu">Linha do tempo das abordagens</p><div class="tl">${x.ab.map(a=>`<div><b>${fd(a[0])}</b> · ${a[1]}<br><span class="mu">${a[2]}</span></div>`).join("")}</div>
+<button class="btn" onclick="rel(${x.id})">Gerar relatório de resultados</button></div></div>`}
+function rel(id){const x=S.emp.find(y=>y.id==id),d=x.ct.filter(c=>c[1]);$("#mod").innerHTML=`<div class="md" onclick="if(event.target==this)close_()"><div class="mc rep"><button class="x noprint" onclick="close_()">×</button><span class="mu">FEJEA · Relatório de prova de valor</span><h1>${x.n}</h1><p class="mu">Preparado para a renovação da parceria</p>
+<div class="grid"><div class="box"><span class="mu">Investimento</span><div class="big">${R(x.v)}</div><span class="mu">${x.t} · ${x.ev}</span></div><div class="box"><span class="mu">Contrapartidas entregues</span><div class="big">${d.length} de ${x.ct.length}</div></div></div>
+<div class="box"><b>O que foi entregue</b>${d.map(c=>`<div>✓ ${c[0]}</div>`).join("")||'<div class="mu">Nenhuma contrapartida registrada ainda.</div>'}</div><div class="box"><b>Alcance</b><div>${x.al||"Alcance a ser medido após o evento."}</div></div>
+<p>A FEJEA agradece pela parceria e convida a ${x.n} a seguir com a rede alagoana de empresas juniores no próximo ciclo.</p><button class="btn noprint" onclick="print()">Imprimir / salvar PDF</button> <button class="btn sec noprint" onclick="ficha(${x.id})">Voltar à ficha</button></div></div>`}
+function addAb(e){e.preventDefault();const f=new FormData(e.target),x=S.emp.find(y=>y.id==f.get("emp"));x.ab.push([f.get("d"),f.get("c"),f.get("r")]);S.abs.push([f.get("d"),f.get("c"),1]);draw()}
+draw();
+</script></body></html>
